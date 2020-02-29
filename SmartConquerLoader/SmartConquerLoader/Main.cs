@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace SmartConquerLoader
@@ -74,7 +75,7 @@ namespace SmartConquerLoader
                 pb.Location = new Point(pb.Location.X + pb.Width, pb.Location.Y + pb.Height + 30);
                 pb.Name = "ImageServer"+ uc.ServerName;
                 pb.Tag = uc;
-                pb.BackColor = Color.Black;
+                pb.BackColor = Color.Transparent;
                 pb.BackgroundImage = Image.FromFile(uc.Image);
                 pb.BackgroundImageLayout = ImageLayout.Stretch;
                 pb.Visible = true;
@@ -90,7 +91,15 @@ namespace SmartConquerLoader
 
         private void Pb_Click(object sender, EventArgs e)
         {
+            foreach (Control control in flowLayoutPanel1.Controls)
+            {
+                if (control is PictureBox pbx)
+                {
+                    pbx.BackColor = Color.Transparent;
+                }
+            }
             PictureBox pb = ((PictureBox)sender);
+            pb.BackColor = Color.DarkCyan;
             Configuration.SelectedUserConfiguration = (UserConfiguration)pb.Tag;
             btnStart.Text = "Start - " + Configuration.SelectedUserConfiguration.ServerName;
             btnStart.Enabled = true;
