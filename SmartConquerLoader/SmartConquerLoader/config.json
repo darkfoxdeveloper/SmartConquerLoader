@@ -1,0 +1,18 @@
+[
+  {
+    "ServerName": "OpenConquer",
+    "Host": "127.0.0.1",
+    "GamePort": "5816",
+    "LoginPort": "9958",
+    "NameConquerExecutable": "Conquer.exe",
+    "ExecuteInSubFolder": "ENV_DX8"
+  },
+  {
+    "ServerName": "OpenConquer2",
+    "Host": "127.0.0.1",
+    "GamePort": "5817",
+    "LoginPort": "9959",
+    "NameConquerExecutable": "Conquer.exe",
+    "ExecuteInSubFolder": "ENV_DX8"
+  }
+]

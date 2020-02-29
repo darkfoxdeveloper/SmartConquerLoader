@@ -35,10 +35,17 @@
     <None Update="Assets\co.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <NativeLibs Remove="Utils.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeLibs Remove="Configuration.cs" />
   </ItemGroup>
 
 </Project>
