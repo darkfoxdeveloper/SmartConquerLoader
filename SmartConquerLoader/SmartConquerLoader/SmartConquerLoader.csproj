@@ -5,6 +5,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>co.ico</ApplicationIcon>
+    <Authors>DaRkFoxDeveloper</Authors>
+    <Company />
+    <Description>Smart Loader for Conquer Online Private Servers</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,6 +49,10 @@
 
   <ItemGroup>
     <NativeLibs Remove="Configuration.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeLibs Remove="Main.resx" />
   </ItemGroup>
 
 </Project>

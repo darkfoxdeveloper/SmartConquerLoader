@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-
-namespace SmartConquerLoader.Classes
+﻿namespace SmartConquerLoader.Classes
 {
     public class UserConfiguration
     {
@@ -13,5 +8,6 @@ namespace SmartConquerLoader.Classes
         public uint LoginPort { get; set; }
         public string NameConquerExecutable { get; set; }
         public string ExecuteInSubFolder { get; set; }
+        public string Image { get; set; }
     }
 }
