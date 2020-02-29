@@ -1,0 +1,12 @@
+{
+  "OpenConquer": {
+    "host": "127.0.0.1",
+    "gameport": "5816",
+    "loginport": "9958"
+  },
+  "SomeServer": {
+    "host": "127.0.0.1",
+    "gameport": "5817",
+    "loginport": "9959"
+  },
+}
