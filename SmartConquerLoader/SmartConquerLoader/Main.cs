@@ -25,14 +25,31 @@ namespace SmartConquerLoader
             {
                 if (File.Exists(Configuration.SelectedUserConfiguration.NameConquerExecutable))
                 {
+                    // Create first the config used by DLL
+                    File.WriteAllText("SCLHook.ini", "[SCLHook]"
+                        + Environment.NewLine + "HOST=" + Configuration.SelectedUserConfiguration.Host
+                        + Environment.NewLine + "GAMEHOST=" + Configuration.SelectedUserConfiguration.Host
+                        + Environment.NewLine + "PORT=" + Configuration.SelectedUserConfiguration.LoginPort
+                        + Environment.NewLine + "GAMEPORT=" + Configuration.SelectedUserConfiguration.GamePort
+                        + Environment.NewLine + "SERVERNAME=" + Configuration.SelectedUserConfiguration.ServerName
+                        + Environment.NewLine + "ENABLE_HOSTNAME=" + Configuration.SelectedUserConfiguration.EnableHostName
+                        + Environment.NewLine + "HOSTNAME=" + Configuration.SelectedUserConfiguration.HostName
+                        + Environment.NewLine + "SERVER_VERSION=" + Configuration.SelectedUserConfiguration.Version
+                        );
+
+                    // Do injection
                     Process pConquer = new Process
                     {
                         StartInfo = new ProcessStartInfo
                         {
-                            FileName = Directory.GetCurrentDirectory() + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable,
+                            FileName = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable,
                             Arguments = "blacknull"
                         }
                     };
+                    if (Configuration.SelectedUserConfiguration.ExecuteInSubFolder != "" && Directory.Exists(Configuration.SelectedUserConfiguration.ExecuteInSubFolder))
+                    {
+                        pConquer.StartInfo.FileName = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable;
+                    }
                     if (File.Exists(pConquer.StartInfo.FileName) && File.Exists("SCLHook.dll"))
                     {
                         pConquer.Start();
@@ -63,6 +80,30 @@ namespace SmartConquerLoader
 
         private void PConquer_Exited(object sender, EventArgs e)
         {
+            ClearAndExit();
+        }
+
+        private void ClearAndExit(bool AlreadyKillConquer = false)
+        {
+            // Clear config file used by DLL
+            if (File.Exists("SCLHook.ini"))
+            {
+                File.Delete("SCLHook.ini");
+            }
+            // Kill conquer if needed
+            if (AlreadyKillConquer)
+            {
+                if (Configuration.CurrentConquerPId > 0)
+                {
+                    Process p = Process.GetProcessById(Configuration.CurrentConquerPId);
+                    if (p != null)
+                    {
+                        p.Kill();
+                        Configuration.CurrentConquerPId = 0;
+                    }
+                }
+            }
+            // Exit
             Environment.Exit(0);
         }
 
@@ -124,8 +165,7 @@ namespace SmartConquerLoader
 
         private void Icon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Process.GetProcessById(Configuration.CurrentConquerPId);
-            Environment.Exit(0);
+            ClearAndExit(true);
         }
 
         private void BtnStart_MouseEnter(object sender, EventArgs e)

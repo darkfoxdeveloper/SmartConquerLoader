@@ -1,20 +1,26 @@
 [
   {
-    "ServerName": "OpenConquer",
+    "ServerName": "Server1",
     "Host": "127.0.0.1",
+    "EnableHostName": 0,
+    "HostName": "",
     "GamePort": "5816",
     "LoginPort": "9958",
     "NameConquerExecutable": "Conquer.exe",
     "ExecuteInSubFolder": "ENV_DX8",
-    "Image":  "Assets/Server1.png"
+    "Image": "Assets/Server.png",
+    "Version": 5600
   },
   {
-    "ServerName": "OpenConquer2",
+    "ServerName": "Testing",
     "Host": "127.0.0.1",
-    "GamePort": "5817",
-    "LoginPort": "9959",
+    "EnableHostName": 0,
+    "HostName": "",
+    "GamePort": "5818",
+    "LoginPort": "9958",
     "NameConquerExecutable": "Conquer.exe",
     "ExecuteInSubFolder": "ENV_DX8",
-    "Image": "Assets/Server2.png"
+    "Image": "Assets/Server.png",
+    "Version": 5600
   }
 ]
