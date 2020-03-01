@@ -25,8 +25,18 @@ namespace SmartConquerLoader
             {
                 if (File.Exists(Configuration.SelectedUserConfiguration.NameConquerExecutable))
                 {
+                    // Detect correct path for SCLHook
+                    string PathSCLHook = "";
+                    if (Configuration.SelectedUserConfiguration.ExecuteInSubFolder != "" && Directory.Exists(Configuration.SelectedUserConfiguration.ExecuteInSubFolder))
+                    {
+                        PathSCLHook = Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + "SCLHook.dll";
+                    } else
+                    {
+                        PathSCLHook = "SCLHook.dll";
+                    }
+
                     // Create first the config used by DLL
-                    File.WriteAllText("SCLHook.ini", "[SCLHook]"
+                    File.WriteAllText(PathSCLHook.Replace(".dll", ".ini"), "[SCLHook]"
                         + Environment.NewLine + "HOST=" + Configuration.SelectedUserConfiguration.Host
                         + Environment.NewLine + "GAMEHOST=" + Configuration.SelectedUserConfiguration.Host
                         + Environment.NewLine + "PORT=" + Configuration.SelectedUserConfiguration.LoginPort
@@ -49,8 +59,10 @@ namespace SmartConquerLoader
                     if (Configuration.SelectedUserConfiguration.ExecuteInSubFolder != "" && Directory.Exists(Configuration.SelectedUserConfiguration.ExecuteInSubFolder))
                     {
                         pConquer.StartInfo.FileName = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable;
+                        pConquer.StartInfo.WorkingDirectory = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\";
                     }
-                    if (File.Exists(pConquer.StartInfo.FileName) && File.Exists("SCLHook.dll"))
+
+                    if (File.Exists(pConquer.StartInfo.FileName) && File.Exists(PathSCLHook))
                     {
                         pConquer.Start();
                         pConquer.EnableRaisingEvents = true;
@@ -127,6 +139,7 @@ namespace SmartConquerLoader
                 flowLayoutPanel1.Controls.SetChildIndex(pb, 0);
                 this.Height += pb.Height;
             }
+            this.Height += 15;
             pbServerImageBase.Visible = false;
         }
 
