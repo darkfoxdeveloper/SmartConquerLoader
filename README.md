@@ -14,3 +14,6 @@ Netcore 3.0 (only for develop)
 ## Features
 - Connection to a previously configured server
 - Allow Multiple connections to multiple servers
+
+### More info (Sorry, but is in Spanish)
+https://www.forum.darkfoxdeveloper.com/d/237-smartconquerloader-proyecto-de-loader-open-source-para-conquer
