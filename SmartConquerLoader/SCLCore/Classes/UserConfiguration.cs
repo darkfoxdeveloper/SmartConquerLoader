@@ -1,4 +1,4 @@
-﻿namespace SmartConquerLoader.Classes
+﻿namespace SCLCore
 {
     public class UserConfiguration
     {
@@ -12,5 +12,6 @@
         public string ExecuteInSubFolder { get; set; }
         public string Image { get; set; }
         public uint Version { get; set; }
+        public string GameCryptographyKey { get; set; }
     }
 }

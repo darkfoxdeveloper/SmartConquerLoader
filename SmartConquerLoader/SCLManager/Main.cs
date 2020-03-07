@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
-using SmartConquerLoader.Classes;
+using SCLCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using static System.Windows.Forms.ListView;
 
 namespace SCLManager
 {
@@ -64,6 +63,14 @@ namespace SCLManager
                 lvi.SubItems.Add(uc.Image);
                 lvi.SubItems.Add(uc.Version.ToString());
                 csvManager.Items.Add(lvi);
+                if (uc.GameCryptographyKey == "")
+                {
+                    string cpath = uc.NameConquerExecutable;
+                    if (uc.ExecuteInSubFolder != "")
+                    {
+                        cpath = Path.Combine(uc.ExecuteInSubFolder, uc.NameConquerExecutable);
+                    }
+                }
                 if (firstLoad)
                 {
                     this.Height += 25;

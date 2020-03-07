@@ -1,12 +1,10 @@
 ﻿using Reloaded.Injector;
-using SmartConquerLoader.Classes;
+using SCLCore;
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace SmartConquerLoader
@@ -64,15 +62,40 @@ namespace SmartConquerLoader
 
                     if (File.Exists(pConquer.StartInfo.FileName) && File.Exists(PathSCLHook))
                     {
-                        pConquer.Start();
-                        pConquer.EnableRaisingEvents = true;
-                        pConquer.Exited += PConquer_Exited;
-                        Configuration.CurrentConquerPId = pConquer.Id;
-                        Injector injector = new Injector(pConquer);
-                        injector.Inject("SCLHook.dll");
-                        injector.Dispose();
-                        btnStart.Text = "Loading...";
-                        SystemTray();
+                        // Need check cryptkey
+                        bool checkCryptKey = Configuration.SelectedUserConfiguration.GameCryptographyKey != "";
+                        if (checkCryptKey)
+                        {
+                            // Check if have the correct conquercryptkey
+                            string cConquerCryptKey = GameCryptography.GetCurrentConquerCryptographyKey(SCLCore.Utils.GetCurrentConquerPath(Configuration.SelectedUserConfiguration));
+                            if (Configuration.SelectedUserConfiguration.GameCryptographyKey == cConquerCryptKey)
+                            {
+                                pConquer.Start();
+                                pConquer.EnableRaisingEvents = true;
+                                pConquer.Exited += PConquer_Exited;
+                                Configuration.CurrentConquerPId = pConquer.Id;
+                                Injector injector = new Injector(pConquer);
+                                injector.Inject("SCLHook.dll");
+                                injector.Dispose();
+                                btnStart.Text = "Loading...";
+                                SystemTray();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error invalid ConquerCryptographyKey in Conquer.exe found!", this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        } else
+                        {
+                            pConquer.Start();
+                            pConquer.EnableRaisingEvents = true;
+                            pConquer.Exited += PConquer_Exited;
+                            Configuration.CurrentConquerPId = pConquer.Id;
+                            Injector injector = new Injector(pConquer);
+                            injector.Inject("SCLHook.dll");
+                            injector.Dispose();
+                            btnStart.Text = "Loading...";
+                            SystemTray();
+                        }
                     }
                     else
                     {

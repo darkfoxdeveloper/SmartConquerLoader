@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SmartConquerLoader.Classes;
+using SCLCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;

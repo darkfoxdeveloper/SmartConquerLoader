@@ -39,6 +39,9 @@
             this.tbExecuteInSubFolder = new System.Windows.Forms.TextBox();
             this.tbImage = new System.Windows.Forms.TextBox();
             this.tbVersion = new System.Windows.Forms.TextBox();
+            this.tbPatchVersion = new System.Windows.Forms.TextBox();
+            this.tbGameCryptographyKey = new System.Windows.Forms.TextBox();
+            this.btnGetGameCryptKey = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbServerName
@@ -60,9 +63,9 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(12, 214);
+            this.btnSave.Location = new System.Drawing.Point(12, 244);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(505, 33);
+            this.btnSave.Size = new System.Drawing.Size(543, 44);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -117,7 +120,7 @@
             // 
             this.tbLoginPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbLoginPort.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbLoginPort.Location = new System.Drawing.Point(291, 12);
+            this.tbLoginPort.Location = new System.Drawing.Point(12, 205);
             this.tbLoginPort.Name = "tbLoginPort";
             this.tbLoginPort.PlaceholderText = "LoginPort";
             this.tbLoginPort.Size = new System.Drawing.Size(226, 31);
@@ -128,7 +131,7 @@
             // 
             this.tbNameConquerExecutable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbNameConquerExecutable.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbNameConquerExecutable.Location = new System.Drawing.Point(291, 49);
+            this.tbNameConquerExecutable.Location = new System.Drawing.Point(255, 12);
             this.tbNameConquerExecutable.Name = "tbNameConquerExecutable";
             this.tbNameConquerExecutable.PlaceholderText = "NameConquerExecutable";
             this.tbNameConquerExecutable.Size = new System.Drawing.Size(226, 31);
@@ -139,7 +142,7 @@
             // 
             this.tbExecuteInSubFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbExecuteInSubFolder.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbExecuteInSubFolder.Location = new System.Drawing.Point(291, 91);
+            this.tbExecuteInSubFolder.Location = new System.Drawing.Point(255, 49);
             this.tbExecuteInSubFolder.Name = "tbExecuteInSubFolder";
             this.tbExecuteInSubFolder.PlaceholderText = "ExecuteInSubFolder";
             this.tbExecuteInSubFolder.Size = new System.Drawing.Size(226, 31);
@@ -150,7 +153,7 @@
             // 
             this.tbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbImage.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbImage.Location = new System.Drawing.Point(291, 131);
+            this.tbImage.Location = new System.Drawing.Point(255, 89);
             this.tbImage.Name = "tbImage";
             this.tbImage.PlaceholderText = "Image";
             this.tbImage.Size = new System.Drawing.Size(226, 31);
@@ -161,29 +164,65 @@
             // 
             this.tbVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbVersion.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbVersion.Location = new System.Drawing.Point(291, 168);
+            this.tbVersion.Location = new System.Drawing.Point(255, 126);
             this.tbVersion.Name = "tbVersion";
             this.tbVersion.PlaceholderText = "Version";
             this.tbVersion.Size = new System.Drawing.Size(226, 31);
             this.tbVersion.TabIndex = 0;
             this.tbVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tbPatchVersion
+            // 
+            this.tbPatchVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPatchVersion.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbPatchVersion.Location = new System.Drawing.Point(255, 168);
+            this.tbPatchVersion.Name = "tbPatchVersion";
+            this.tbPatchVersion.PlaceholderText = "PatchVersion";
+            this.tbPatchVersion.Size = new System.Drawing.Size(226, 31);
+            this.tbPatchVersion.TabIndex = 0;
+            this.tbPatchVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbGameCryptographyKey
+            // 
+            this.tbGameCryptographyKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbGameCryptographyKey.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbGameCryptographyKey.Location = new System.Drawing.Point(255, 205);
+            this.tbGameCryptographyKey.Name = "tbGameCryptographyKey";
+            this.tbGameCryptographyKey.PlaceholderText = "GameCryptographyKey";
+            this.tbGameCryptographyKey.Size = new System.Drawing.Size(226, 31);
+            this.tbGameCryptographyKey.TabIndex = 0;
+            this.tbGameCryptographyKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btnGetGameCryptKey
+            // 
+            this.btnGetGameCryptKey.Font = new System.Drawing.Font("Caladea", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnGetGameCryptKey.Location = new System.Drawing.Point(487, 204);
+            this.btnGetGameCryptKey.Name = "btnGetGameCryptKey";
+            this.btnGetGameCryptKey.Size = new System.Drawing.Size(68, 32);
+            this.btnGetGameCryptKey.TabIndex = 3;
+            this.btnGetGameCryptKey.Text = "GET";
+            this.btnGetGameCryptKey.UseVisualStyleBackColor = true;
+            this.btnGetGameCryptKey.Click += new System.EventHandler(this.BtnGetGameCryptKey_Click);
+            // 
             // ChangeConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(529, 257);
+            this.ClientSize = new System.Drawing.Size(567, 293);
+            this.Controls.Add(this.tbGameCryptographyKey);
+            this.Controls.Add(this.tbPatchVersion);
+            this.Controls.Add(this.tbExecuteInSubFolder);
+            this.Controls.Add(this.tbImage);
+            this.Controls.Add(this.tbVersion);
+            this.Controls.Add(this.tbNameConquerExecutable);
+            this.Controls.Add(this.btnGetGameCryptKey);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.tbLoginPort);
             this.Controls.Add(this.tbGamePort);
             this.Controls.Add(this.tbHostName);
             this.Controls.Add(this.tbHost);
-            this.Controls.Add(this.tbNameConquerExecutable);
-            this.Controls.Add(this.tbLoginPort);
-            this.Controls.Add(this.tbVersion);
-            this.Controls.Add(this.tbImage);
-            this.Controls.Add(this.tbExecuteInSubFolder);
             this.Controls.Add(this.cbUseHostName);
             this.Controls.Add(this.tbServerName);
-            this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "ChangeConfiguration";
@@ -207,5 +246,8 @@
         private System.Windows.Forms.TextBox tbExecuteInSubFolder;
         private System.Windows.Forms.TextBox tbVersion;
         private System.Windows.Forms.TextBox tbImage;
+        private System.Windows.Forms.TextBox tbPatchVersion;
+        private System.Windows.Forms.TextBox tbGameCryptographyKey;
+        private System.Windows.Forms.Button btnGetGameCryptKey;
     }
 }

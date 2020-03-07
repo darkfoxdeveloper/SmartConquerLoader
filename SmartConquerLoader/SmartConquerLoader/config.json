@@ -4,35 +4,38 @@
     "Host": "127.0.0.1",
     "EnableHostName": 0,
     "HostName": "",
-    "GamePort": "5818",
-    "LoginPort": "9958",
+    "GamePort": 5818,
+    "LoginPort": 9958,
     "NameConquerExecutable": "Conquer.exe",
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
-    "Version": 5600
+    "Version": 5600,
+    "GameCryptographyKey": ""
   },
   {
     "ServerName": "Testing60XX",
     "Host": "127.0.0.1",
     "EnableHostName": 0,
     "HostName": "",
-    "GamePort": "5816",
-    "LoginPort": "9958",
+    "GamePort": 5816,
+    "LoginPort": 9958,
     "NameConquerExecutable": "Conquer.exe",
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
-    "Version": 6000
+    "Version": 6000,
+    "GameCryptographyKey": ""
   },
   {
     "ServerName": "Testing66XX",
     "Host": "127.0.0.1",
     "EnableHostName": 0,
     "HostName": "",
-    "GamePort": "5816",
-    "LoginPort": "9958",
+    "GamePort": 5816,
+    "LoginPort": 9958,
     "NameConquerExecutable": "Conquer.exe",
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
-    "Version": 6600
+    "Version": 6600,
+    "GameCryptographyKey": ""
   }
 ]

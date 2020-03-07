@@ -58,4 +58,8 @@
     <NativeLibs Remove="Main.resx" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SCLCore\SCLCore.csproj" />
+  </ItemGroup>
+
 </Project>

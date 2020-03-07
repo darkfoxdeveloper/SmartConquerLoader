@@ -1,4 +1,4 @@
-﻿using SmartConquerLoader.Classes;
+﻿using SCLCore;
 using System;
 using System.Drawing;
 using System.IO;
@@ -32,6 +32,7 @@ namespace SCLManager
             tbExecuteInSubFolder.Text = uc.ExecuteInSubFolder;
             tbImage.Text = uc.Image;
             tbVersion.Text = uc.Version.ToString();
+            tbGameCryptographyKey.Text = uc.GameCryptographyKey.ToString();
         }
 
         private void CbUseHostName_CheckedChanged(object sender, EventArgs e)
@@ -52,6 +53,21 @@ namespace SCLManager
             uc.ExecuteInSubFolder = tbExecuteInSubFolder.Text;
             uc.Image = tbImage.Text;
             uc.Version = uint.Parse(tbVersion.Text);
+            uc.GameCryptographyKey = tbGameCryptographyKey.Text;
+        }
+
+        private void BtnGetGameCryptKey_Click(object sender, EventArgs e)
+        {
+            string cpath = Utils.GetCurrentConquerPath(uc);
+            if (File.Exists(cpath))
+            {
+                uc.GameCryptographyKey = SCLCore.GameCryptography.GetCurrentConquerCryptographyKey(cpath);
+                tbGameCryptographyKey.Text = uc.GameCryptographyKey;
+            }
+            else
+            {
+                MessageBox.Show("Cannot load the cryptkey of Conquer.exe (" + cpath + ") for the server " + uc.ServerName, this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
