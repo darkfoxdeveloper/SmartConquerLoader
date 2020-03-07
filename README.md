@@ -5,7 +5,7 @@ Smart Loader for Conquer Online Clients
 A loader to connect to a private server and can easily configure the connection
 
 ## Tecnologies used
-The latest microsoft framework called Net Core is used in its latest version 3.0
+The latest microsoft framework called Net Core is used in its latest version 3.1
 
 ## Minimal Requeriments
 Windows 7 SP1
