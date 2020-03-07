@@ -39,7 +39,6 @@
             this.tbExecuteInSubFolder = new System.Windows.Forms.TextBox();
             this.tbImage = new System.Windows.Forms.TextBox();
             this.tbVersion = new System.Windows.Forms.TextBox();
-            this.tbPatchVersion = new System.Windows.Forms.TextBox();
             this.tbGameCryptographyKey = new System.Windows.Forms.TextBox();
             this.btnGetGameCryptKey = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -171,17 +170,6 @@
             this.tbVersion.TabIndex = 0;
             this.tbVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPatchVersion
-            // 
-            this.tbPatchVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPatchVersion.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbPatchVersion.Location = new System.Drawing.Point(255, 168);
-            this.tbPatchVersion.Name = "tbPatchVersion";
-            this.tbPatchVersion.PlaceholderText = "PatchVersion";
-            this.tbPatchVersion.Size = new System.Drawing.Size(226, 31);
-            this.tbPatchVersion.TabIndex = 0;
-            this.tbPatchVersion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // tbGameCryptographyKey
             // 
             this.tbGameCryptographyKey.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -210,7 +198,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 293);
             this.Controls.Add(this.tbGameCryptographyKey);
-            this.Controls.Add(this.tbPatchVersion);
             this.Controls.Add(this.tbExecuteInSubFolder);
             this.Controls.Add(this.tbImage);
             this.Controls.Add(this.tbVersion);
@@ -246,7 +233,6 @@
         private System.Windows.Forms.TextBox tbExecuteInSubFolder;
         private System.Windows.Forms.TextBox tbVersion;
         private System.Windows.Forms.TextBox tbImage;
-        private System.Windows.Forms.TextBox tbPatchVersion;
         private System.Windows.Forms.TextBox tbGameCryptographyKey;
         private System.Windows.Forms.Button btnGetGameCryptKey;
     }

@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NDesk.Options.Core" Version="1.2.5" />
+    <PackageReference Include="NetCoreServer" Version="3.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="ConquerCryptKey">
       <HintPath>..\..\RequiredLibraries\ConquerCryptKey.dll</HintPath>
     </Reference>
