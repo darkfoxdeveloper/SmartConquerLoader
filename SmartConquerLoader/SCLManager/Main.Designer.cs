@@ -145,7 +145,7 @@
             this.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.Text = "SmartConquerLoader";
+            this.Text = "SCLManager";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
 

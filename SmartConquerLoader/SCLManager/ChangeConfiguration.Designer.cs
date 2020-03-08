@@ -213,7 +213,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "ChangeConfiguration";
-            this.Text = "Change Configuration";
+            this.Text = "Change Configuration - SCLManager";
             this.Load += new System.EventHandler(this.ChangeUserConfiguration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
