@@ -39,11 +39,13 @@
             this.ExecuteInSubFolder = new System.Windows.Forms.ColumnHeader();
             this.Image = new System.Windows.Forms.ColumnHeader();
             this.Version = new System.Windows.Forms.ColumnHeader();
+            this.btnAddNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // csvManager
             // 
             this.csvManager.AllowColumnReorder = true;
+            this.csvManager.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.csvManager.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ServerName,
             this.Host,
@@ -55,12 +57,11 @@
             this.ExecuteInSubFolder,
             this.Image,
             this.Version});
-            this.csvManager.Dock = System.Windows.Forms.DockStyle.Fill;
             this.csvManager.HideSelection = false;
             this.csvManager.Location = new System.Drawing.Point(0, 0);
             this.csvManager.MultiSelect = false;
             this.csvManager.Name = "csvManager";
-            this.csvManager.Size = new System.Drawing.Size(2027, 44);
+            this.csvManager.Size = new System.Drawing.Size(2027, 204);
             this.csvManager.TabIndex = 0;
             this.csvManager.UseCompatibleStateImageBehavior = false;
             this.csvManager.View = System.Windows.Forms.View.Details;
@@ -134,13 +135,29 @@
             this.Version.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Version.Width = 200;
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.BackColor = System.Drawing.Color.Black;
+            this.btnAddNew.FlatAppearance.BorderSize = 0;
+            this.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddNew.Font = new System.Drawing.Font("Caladea", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnAddNew.ForeColor = System.Drawing.Color.White;
+            this.btnAddNew.Location = new System.Drawing.Point(1883, 220);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(132, 40);
+            this.btnAddNew.TabIndex = 1;
+            this.btnAddNew.Text = "Add new";
+            this.btnAddNew.UseVisualStyleBackColor = false;
+            this.btnAddNew.Click += new System.EventHandler(this.BtnAddNew_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(2027, 44);
+            this.ClientSize = new System.Drawing.Size(2027, 272);
+            this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.csvManager);
             this.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MaximizeBox = false;
@@ -164,6 +181,8 @@
         private System.Windows.Forms.ColumnHeader ExecuteInSubFolder;
         private System.Windows.Forms.ColumnHeader Image;
         private System.Windows.Forms.ColumnHeader Version;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Button button1;
     }
 }
 

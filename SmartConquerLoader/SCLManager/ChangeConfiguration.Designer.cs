@@ -41,6 +41,8 @@
             this.tbVersion = new System.Windows.Forms.TextBox();
             this.tbGameCryptographyKey = new System.Windows.Forms.TextBox();
             this.btnGetGameCryptKey = new System.Windows.Forms.Button();
+            this.btnSetGameCryptKey = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbServerName
@@ -64,7 +66,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(12, 244);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(543, 44);
+            this.btnSave.Size = new System.Drawing.Size(469, 44);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -184,25 +186,53 @@
             // btnGetGameCryptKey
             // 
             this.btnGetGameCryptKey.Font = new System.Drawing.Font("Caladea", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnGetGameCryptKey.Location = new System.Drawing.Point(487, 204);
+            this.btnGetGameCryptKey.Location = new System.Drawing.Point(255, 169);
             this.btnGetGameCryptKey.Name = "btnGetGameCryptKey";
-            this.btnGetGameCryptKey.Size = new System.Drawing.Size(68, 32);
+            this.btnGetGameCryptKey.Size = new System.Drawing.Size(111, 32);
             this.btnGetGameCryptKey.TabIndex = 3;
-            this.btnGetGameCryptKey.Text = "GET";
+            this.btnGetGameCryptKey.Text = "GET CURRENT";
             this.btnGetGameCryptKey.UseVisualStyleBackColor = true;
             this.btnGetGameCryptKey.Click += new System.EventHandler(this.BtnGetGameCryptKey_Click);
+            // 
+            // btnSetGameCryptKey
+            // 
+            this.btnSetGameCryptKey.Font = new System.Drawing.Font("Caladea", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSetGameCryptKey.Location = new System.Drawing.Point(372, 169);
+            this.btnSetGameCryptKey.Name = "btnSetGameCryptKey";
+            this.btnSetGameCryptKey.Size = new System.Drawing.Size(109, 32);
+            this.btnSetGameCryptKey.TabIndex = 3;
+            this.btnSetGameCryptKey.Text = "SET CUSTOM";
+            this.btnSetGameCryptKey.UseVisualStyleBackColor = true;
+            this.btnSetGameCryptKey.Click += new System.EventHandler(this.BtnSetGameCryptKey_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Black;
+            this.btnRemove.DialogResult = System.Windows.Forms.DialogResult.Abort;
+            this.btnRemove.FlatAppearance.BorderSize = 0;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Caladea", 9.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRemove.ForeColor = System.Drawing.Color.White;
+            this.btnRemove.Location = new System.Drawing.Point(12, 294);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(469, 44);
+            this.btnRemove.TabIndex = 1;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = false;
             // 
             // ChangeConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 293);
+            this.ClientSize = new System.Drawing.Size(488, 346);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnSetGameCryptKey);
+            this.Controls.Add(this.btnGetGameCryptKey);
             this.Controls.Add(this.tbGameCryptographyKey);
             this.Controls.Add(this.tbExecuteInSubFolder);
             this.Controls.Add(this.tbImage);
             this.Controls.Add(this.tbVersion);
             this.Controls.Add(this.tbNameConquerExecutable);
-            this.Controls.Add(this.btnGetGameCryptKey);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbLoginPort);
             this.Controls.Add(this.tbGamePort);
@@ -235,5 +265,9 @@
         private System.Windows.Forms.TextBox tbImage;
         private System.Windows.Forms.TextBox tbGameCryptographyKey;
         private System.Windows.Forms.Button btnGetGameCryptKey;
+        private System.Windows.Forms.Button btnSetGameCryptographyKey;
+        private System.Windows.Forms.Button btnSetGameCryptKey;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRemove;
     }
 }

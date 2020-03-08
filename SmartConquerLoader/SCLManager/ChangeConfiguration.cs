@@ -32,7 +32,13 @@ namespace SCLManager
             tbExecuteInSubFolder.Text = uc.ExecuteInSubFolder;
             tbImage.Text = uc.Image;
             tbVersion.Text = uc.Version.ToString();
-            tbGameCryptographyKey.Text = uc.GameCryptographyKey.ToString();
+            if (uc.GameCryptographyKey != null)
+            {
+                tbGameCryptographyKey.Text = uc.GameCryptographyKey.ToString();
+            } else
+            {
+                tbGameCryptographyKey.Text = "";
+            }
         }
 
         private void CbUseHostName_CheckedChanged(object sender, EventArgs e)
@@ -58,6 +64,10 @@ namespace SCLManager
 
         private void BtnGetGameCryptKey_Click(object sender, EventArgs e)
         {
+            if (uc.NameConquerExecutable == null || uc.NameConquerExecutable == "")
+            {
+                uc.NameConquerExecutable = "Conquer.exe";
+            }
             string cpath = Utils.GetCurrentConquerPath(uc);
             if (File.Exists(cpath))
             {
@@ -67,6 +77,27 @@ namespace SCLManager
             else
             {
                 MessageBox.Show("Cannot load the cryptkey of Conquer.exe (" + cpath + ") for the server " + uc.ServerName, this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnSetGameCryptKey_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("This action remplace your current 'GameCryptKey' of Conquer executable file", this.ProductName, MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dr == DialogResult.OK)
+            {
+                string cpath = Utils.GetCurrentConquerPath(uc);
+                if (File.Exists(cpath))
+                {
+                    bool isSetCryptKey = SCLCore.GameCryptography.SetConquerCryptographyKey(cpath, ((TextBox)sender).Text);
+                    if (!isSetCryptKey)
+                    {
+                        MessageBox.Show("Cannot set the key because has a error with conquer executable file!", this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Not found a conquer.exe in path: " + cpath, this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
     }

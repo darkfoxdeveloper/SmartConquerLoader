@@ -42,38 +42,29 @@ namespace SCLManager
             }
             else if(firstLoad)
             {
-                File.Create(ConfigPathFile);
+                File.WriteAllText(ConfigPathFile, "");
             }
             UserConfigurations = JsonConvert.DeserializeObject<List<UserConfiguration>>(jsonData);
             csvManager.Items.Clear();
-            foreach (UserConfiguration uc in UserConfigurations)
+            if (UserConfigurations != null)
             {
-                ListViewItem lvi = new ListViewItem
+                foreach (UserConfiguration uc in UserConfigurations)
                 {
-                    Text = uc.ServerName,
-                    Tag = uc
-                };
-                lvi.SubItems.Add(uc.Host);
-                lvi.SubItems.Add(uc.EnableHostName.ToString());
-                lvi.SubItems.Add(uc.HostName);
-                lvi.SubItems.Add(uc.GamePort.ToString());
-                lvi.SubItems.Add(uc.LoginPort.ToString());
-                lvi.SubItems.Add(uc.NameConquerExecutable);
-                lvi.SubItems.Add(uc.ExecuteInSubFolder);
-                lvi.SubItems.Add(uc.Image);
-                lvi.SubItems.Add(uc.Version.ToString());
-                csvManager.Items.Add(lvi);
-                if (uc.GameCryptographyKey == "")
-                {
-                    string cpath = uc.NameConquerExecutable;
-                    if (uc.ExecuteInSubFolder != "")
+                    ListViewItem lvi = new ListViewItem
                     {
-                        cpath = Path.Combine(uc.ExecuteInSubFolder, uc.NameConquerExecutable);
-                    }
-                }
-                if (firstLoad)
-                {
-                    this.Height += 25;
+                        Text = uc.ServerName,
+                        Tag = uc
+                    };
+                    lvi.SubItems.Add(uc.Host);
+                    lvi.SubItems.Add(uc.EnableHostName.ToString());
+                    lvi.SubItems.Add(uc.HostName);
+                    lvi.SubItems.Add(uc.GamePort.ToString());
+                    lvi.SubItems.Add(uc.LoginPort.ToString());
+                    lvi.SubItems.Add(uc.NameConquerExecutable);
+                    lvi.SubItems.Add(uc.ExecuteInSubFolder);
+                    lvi.SubItems.Add(uc.Image);
+                    lvi.SubItems.Add(uc.Version.ToString());
+                    csvManager.Items.Add(lvi);
                 }
             }
         }
@@ -99,8 +90,29 @@ namespace SCLManager
                 {
                     this.SaveConfigFile();
                     this.LoadConfigFile();
+                } else if (cc.DialogResult == DialogResult.Abort)
+                {
+                    UserConfigurations.Remove(cc.uc);
+                    this.SaveConfigFile();
+                    this.LoadConfigFile();
                 }
             }
+        }
+
+        private void BtnAddNew_Click(object sender, EventArgs e)
+        {
+            if (UserConfigurations == null)
+            {
+                UserConfigurations = new List<UserConfiguration>
+                {
+                    new UserConfiguration() { ServerName = "NewServer0" }
+                };
+            } else
+            {
+                UserConfigurations.Add(new UserConfiguration() { ServerName = "NewServer" + UserConfigurations.Count });
+            }
+            this.SaveConfigFile();
+            this.LoadConfigFile();
         }
     }
 }
