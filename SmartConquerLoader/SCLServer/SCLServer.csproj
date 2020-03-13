@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>DaRkFoxDeveloper</Authors>
+    <Company>DaRkFoxDeveloper</Company>
+    <Product>DaRkFoxDeveloper</Product>
+    <Description>A basic socket based server for use a server side protection for SmartConquerLoader</Description>
+    <Copyright>SCLServer 2020</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SCLCore\SCLCore.csproj" />
+  </ItemGroup>
+
+</Project>

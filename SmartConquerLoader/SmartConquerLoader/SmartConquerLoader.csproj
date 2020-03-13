@@ -7,7 +7,9 @@
     <ApplicationIcon>co.ico</ApplicationIcon>
     <Authors>DaRkFoxDeveloper</Authors>
     <Company />
-    <Description>Smart Loader for Conquer Online Private Servers</Description>
+    <Description>Smart Loader for Conquer Online Private Servers.</Description>
+    <Copyright>SmartConquerLoader 2020</Copyright>
+    <PackageProjectUrl>https://www.darkfoxdeveloper.com</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

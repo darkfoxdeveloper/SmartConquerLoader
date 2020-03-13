@@ -13,5 +13,6 @@
         public string Image { get; set; }
         public uint Version { get; set; }
         public string GameCryptographyKey { get; set; }
+        public bool ServerSideProtection { get; set; }
     }
 }

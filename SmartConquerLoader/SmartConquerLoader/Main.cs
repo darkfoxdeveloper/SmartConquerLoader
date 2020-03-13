@@ -5,12 +5,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SmartConquerLoader
 {
     public partial class Main : Form
     {
+        SCLCore.SCLClient client = null;
         public Main()
         {
             InitializeComponent();
@@ -78,6 +80,11 @@ namespace SmartConquerLoader
                                 injector.Inject("SCLHook.dll");
                                 injector.Dispose();
                                 btnStart.Text = "Loading...";
+                                if (Configuration.SelectedUserConfiguration.ServerSideProtection)
+                                {
+                                    client = new SCLCore.SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                    client.StartSCLClient();
+                                }
                                 SystemTray();
                             }
                             else
@@ -94,6 +101,11 @@ namespace SmartConquerLoader
                             injector.Inject("SCLHook.dll");
                             injector.Dispose();
                             btnStart.Text = "Loading...";
+                            if (Configuration.SelectedUserConfiguration.ServerSideProtection)
+                            {
+                                client = new SCLCore.SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                client.StartSCLClient();
+                            }
                             SystemTray();
                         }
                     }
@@ -115,6 +127,13 @@ namespace SmartConquerLoader
 
         private void PConquer_Exited(object sender, EventArgs e)
         {
+            if (Configuration.SelectedUserConfiguration.ServerSideProtection)
+            {
+                if (client != null)
+                {
+                    client.SafeDisconnect();
+                }
+            }
             ClearAndExit();
         }
 

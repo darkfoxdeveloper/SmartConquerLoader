@@ -10,7 +10,8 @@
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
     "Version": 5600,
-    "GameCryptographyKey": ""
+    "GameCryptographyKey": "",
+    "ServerSideProtection": true
   },
   {
     "ServerName": "Testing60XX",
@@ -23,7 +24,8 @@
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
     "Version": 6000,
-    "GameCryptographyKey": ""
+    "GameCryptographyKey": "",
+    "ServerSideProtection": false
   },
   {
     "ServerName": "Testing66XX",
@@ -36,6 +38,7 @@
     "ExecuteInSubFolder": "ENV_DX8",
     "Image": "Assets/Server.png",
     "Version": 6600,
-    "GameCryptographyKey": ""
+    "GameCryptographyKey": "",
+    "ServerSideProtection": false
   }
 ]

@@ -2,7 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>DaRkFoxDeveloper</Authors>
+    <Company>DaRkFoxDeveloper</Company>
+    <Description>Core library for all basic functions of SmartConquerLoader.</Description>
+    <Copyright>SCLCore 2020</Copyright>
+    <PackageProjectUrl>https://www.darkfoxdeveloper.com</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NetCoreServer" Version="3.0.5" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="ConquerCryptKey">

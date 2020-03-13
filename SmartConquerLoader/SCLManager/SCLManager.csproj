@@ -5,6 +5,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>co.ico</ApplicationIcon>
+    <Authors>DaRkFoxDeveloper</Authors>
+    <Company>DaRkFoxDeveloper</Company>
+    <Product>DaRkFoxDeveloper</Product>
+    <Description>A manager for configuration of SmartConquerLoader.</Description>
+    <PackageProjectUrl>https://www.darkfoxdeveloper.com</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
