@@ -45,6 +45,8 @@ BYTE pattern_OLD[] = { 0x85, 0xC0, 0x75, 0x00, 0x8B, 0x4E, 0x00, 0xE8, 0x00, 0x0
 BYTE pattern2_OLD[] = { 0x85, 0xC9, 0x00, 0x00, 0xFF, 0x75, 0x00, 0x57, 0xE8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x45 }; // Version = Old Clients
 BYTE pattern_56XX[] = { 0x85, 0xC0, 0x75, 0x00, 0x8B, 0x4F, 0x00, 0xE8, 0x00, 0x00, 0x00, 0x00, 0x83, 0x4D, 0x00, 0x00, 0x8B, 0x00, 0x00 }; // Version = 56XX
 BYTE pattern2_56XX[] = { 0x85, 0xC9, 0x00, 0x00, 0xFF, 0x75, 0x00, 0x57, 0xE8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x45 }; // Version = 56XX
+BYTE pattern_55XX[] = { 0x85, 0xC0, 0x74, 0x0E, 0x8B, 0x45, 0x20, 0xC7, 0x00, 0x01, 0x00, 0x00, 0x00, 0xE9, 0xA2, 0x00, 0x00, 0x00, 0x00 }; // Version = 56XX
+BYTE pattern2_55XX[] = { 0x85, 0xC9, 0x00, 0x00, 0xFF, 0x75, 0x00, 0x57, 0xE8, 0x00, 0x00, 0x00, 0x00, 0x89, 0x45 }; // Version = 56XX
 LPCSTR ConfigSectionName = "SCLHook";
 
 extern LPVOID FindMemoryPattern(PBYTE pattern, bool* wildCards, int len);
@@ -211,62 +213,68 @@ void csv3_init(HMODULE hModule)
 	char ConfigServerVersion[32];
 	GetPrivateProfileStringA(ConfigSectionName, "SERVER_VERSION", "0", ConfigServerVersion, 32, szConfig);
 	int ConfigServerVersionInt = (int)ConfigServerVersion;
-	
-	//
-	//	hook packet processor
-	//
-	bool wildcards[] = { 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1 };
-	PBYTE match = (PBYTE)FindMemoryPattern(pattern_OLD, wildcards, 19);
-	if (ConfigServerVersionInt >= 5600) {
-		match = (PBYTE)FindMemoryPattern(pattern_56XX, wildcards, 19);
-	}
-	if (ConfigServerVersionInt >= 6000) {
-		match = (PBYTE)FindMemoryPattern(pattern_60XX, wildcards, 19);
-	}
-	if (ConfigServerVersionInt >= 6600) {
-		match = (PBYTE)FindMemoryPattern(pattern_66XX, wildcards, 19);
+
+	if (ConfigServerVersionInt <= 5500) {
+		//
+		//	hook packet processor
+		//
+		bool wildcards[] = { 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1 };
+		PBYTE match = (PBYTE)FindMemoryPattern(pattern_OLD, wildcards, 19);
+		if (ConfigServerVersionInt >= 5600) {
+			match = (PBYTE)FindMemoryPattern(pattern_56XX, wildcards, 19);
+		}
+		if (ConfigServerVersionInt >= 6000) {
+			match = (PBYTE)FindMemoryPattern(pattern_60XX, wildcards, 19);
+		}
+		if (ConfigServerVersionInt >= 6600) {
+			match = (PBYTE)FindMemoryPattern(pattern_66XX, wildcards, 19);
+		}
+
+		if (match==NULL)
+		{
+			sprintf(szDebug, "failed find pattern. Contact with darkfoxdeveloper@gmail.com for more information", (DWORD)match);
+			MessageBoxA(NULL, szDebug, "ERROR", MB_OK);
+			return;
+		}
+
+		DWORD callDstInter;
+		match = match - 5; // where the call occurs
+		ReadProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
+		tq_handler = (PBYTE)( (DWORD)match - (UINT_MAX - callDstInter) + 4 );
+		// update the intermediate to our hook
+		callDstInter = (DWORD)csv3_handler_hook - (DWORD)match + UINT_MAX - 4;
+		WriteProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
+
+		bool wildcards2[] = { 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0 };
+		match = (PBYTE)FindMemoryPattern(pattern2_OLD, wildcards2, 15);
+		if (ConfigServerVersionInt >= 5500) {
+			match = (PBYTE)FindMemoryPattern(pattern2_56XX, wildcards2, 15);
+		}
+		if (ConfigServerVersionInt >= 5600) {
+			match = (PBYTE)FindMemoryPattern(pattern2_56XX, wildcards2, 15);
+		}
+		if (ConfigServerVersionInt >= 6000) {
+			match = (PBYTE)FindMemoryPattern(pattern2_60XX, wildcards2, 15);
+		}
+		if (ConfigServerVersionInt >= 6600) {
+			match = (PBYTE)FindMemoryPattern(pattern2_66XX, wildcards2, 15);
+		}
+
+		if (match==NULL)
+		{
+			sprintf(szDebug, "failed find pattern2. Contact with darkfoxdeveloper@gmail.com for more information", (DWORD)match);
+			MessageBoxA(NULL, szDebug, "ERROR", MB_OK);
+			return;
+		}
+
+		match += 8;
+		ReadProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
+		tq_send = (PBYTE)( (DWORD)match - (UINT_MAX - callDstInter) + 4);
+		memset(szPassword, 0, 32);
+
+		CreateHook32(lib_func("msvcr90.dll", "_snprintf"), csv3_snprintf, &snprintf_stub);
+		CreateHook32(lib_func("ws2_32.dll", "send"), csv3_send, &send_stub);
 	}
 
-	if (match==NULL)
-	{
-		sprintf(szDebug, "failed find pattern. Contact with darkfoxdeveloper@gmail.com for more information", (DWORD)match);
-		MessageBoxA(NULL, szDebug, "ERROR", MB_OK);
-		return;
-	}
-
-	DWORD callDstInter;
-	match = match - 5; // where the call occurs
-	ReadProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
-	tq_handler = (PBYTE)( (DWORD)match - (UINT_MAX - callDstInter) + 4 );
-	// update the intermediate to our hook
-	callDstInter = (DWORD)csv3_handler_hook - (DWORD)match + UINT_MAX - 4;
-	WriteProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
-
-	bool wildcards2[] = { 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0 };
-	match = (PBYTE)FindMemoryPattern(pattern2_OLD, wildcards2, 15);
-	if (ConfigServerVersionInt >= 5600) {
-		match = (PBYTE)FindMemoryPattern(pattern2_56XX, wildcards2, 15);
-	}
-	if (ConfigServerVersionInt >= 6000) {
-		match = (PBYTE)FindMemoryPattern(pattern2_60XX, wildcards2, 15);
-	}
-	if (ConfigServerVersionInt >= 6600) {
-		match = (PBYTE)FindMemoryPattern(pattern2_66XX, wildcards2, 15);
-	}
-	
-	if (match==NULL)
-	{
-		sprintf(szDebug, "failed find pattern2. Contact with darkfoxdeveloper@gmail.com for more information", (DWORD)match);
-		MessageBoxA(NULL, szDebug, "ERROR", MB_OK);
-		return;
-	}
-
-	match += 8;
-	ReadProcessMemory(GetCurrentProcess(), match+1, &callDstInter, sizeof(callDstInter), NULL);
-	tq_send = (PBYTE)( (DWORD)match - (UINT_MAX - callDstInter) + 4);
-	memset(szPassword, 0, 32);
-
-	CreateHook32(lib_func("msvcr90.dll", "_snprintf"), csv3_snprintf, &snprintf_stub);
-	CreateHook32(lib_func("ws2_32.dll", "send"), csv3_send, &send_stub);
 	CreateHook32(lib_func("ws2_32.dll", "connect"), csv3_connect, &connect_stub);
 }

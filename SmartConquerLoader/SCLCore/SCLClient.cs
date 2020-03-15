@@ -34,8 +34,6 @@ namespace SCLCore
             Console.WriteLine($"[SCLClient] port: {Port}");
             Console.WriteLine();
 
-            // Create a new TCP chat client
-
             // Connect the client
             Console.Write("[SCLClient] Client connecting...");
             if (this.Connect())

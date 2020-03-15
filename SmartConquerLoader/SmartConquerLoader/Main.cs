@@ -82,7 +82,7 @@ namespace SmartConquerLoader
                                 btnStart.Text = "Loading...";
                                 if (Configuration.SelectedUserConfiguration.ServerSideProtection)
                                 {
-                                    client = new SCLCore.SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                    client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
                                     client.StartSCLClient();
                                 }
                                 SystemTray();
@@ -103,7 +103,7 @@ namespace SmartConquerLoader
                             btnStart.Text = "Loading...";
                             if (Configuration.SelectedUserConfiguration.ServerSideProtection)
                             {
-                                client = new SCLCore.SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
                                 client.StartSCLClient();
                             }
                             SystemTray();
@@ -199,7 +199,6 @@ namespace SmartConquerLoader
             Configuration.SelectedUserConfiguration = (UserConfiguration)pb.Tag;
             btnStart.Text = "Start - " + Configuration.SelectedUserConfiguration.ServerName;
             btnStart.Enabled = true;
-            // TODO generate file .ini used for dll and develop the dll for hook 'SCLHook.dll'
         }
 
         private void SystemTray()
