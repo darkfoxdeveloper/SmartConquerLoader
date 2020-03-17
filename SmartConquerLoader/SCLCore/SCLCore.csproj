@@ -13,10 +13,4 @@
     <PackageReference Include="NetCoreServer" Version="3.0.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="ConquerCryptKey">
-      <HintPath>..\..\RequiredLibraries\ConquerCryptKey.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

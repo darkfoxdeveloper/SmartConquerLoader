@@ -8,9 +8,8 @@ namespace SCLCore
         // With help of ConquerCryptKey created by DaRkFox read the current cryptkey of conquer.exe
         public static string GetCurrentConquerCryptographyKey(string ConquerExecutablePath)
         {
-            ConquerCryptKey.CryptFile cryptFile = new ConquerCryptKey.CryptFile(ConquerExecutablePath);
-            cryptFile.ReadCryptKey();// Read the cryptkey
-            string cryptkey = cryptFile.OldCryptKey;// Access to current cryptkey
+            ConquerCryptography cryptFile = new ConquerCryptography(ConquerExecutablePath);
+            string cryptkey = cryptFile.Get();// Read & Access to current cryptkey
             return cryptkey;
         }
 
@@ -20,11 +19,9 @@ namespace SCLCore
             bool success = true;
             try
             {
-                ConquerCryptKey.CryptFile cryptFile = new ConquerCryptKey.CryptFile(ConquerExecutablePath);
-                cryptFile.ChangeCryptKey(GameCryptKey, @"NewConquer.exe");
-                File.Copy(ConquerExecutablePath, ConquerExecutablePath + ".backup");
-                File.Move(@"NewConquer.exe", ConquerExecutablePath);
-            } catch(Exception)
+                ConquerCryptography cryptFile = new ConquerCryptography(ConquerExecutablePath);
+                cryptFile.Set(GameCryptKey, ConquerExecutablePath);
+            } catch(Exception ex)
             {
                 success = false;
             }

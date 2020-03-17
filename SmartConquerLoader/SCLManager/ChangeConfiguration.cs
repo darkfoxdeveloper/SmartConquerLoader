@@ -88,10 +88,10 @@ namespace SCLManager
                 string cpath = Utils.GetCurrentConquerPath(uc);
                 if (File.Exists(cpath))
                 {
-                    bool isSetCryptKey = SCLCore.GameCryptography.SetConquerCryptographyKey(cpath, ((TextBox)sender).Text);
+                    bool isSetCryptKey = GameCryptography.SetConquerCryptographyKey(cpath, tbGameCryptographyKey.Text);
                     if (!isSetCryptKey)
                     {
-                        MessageBox.Show("Cannot set the key because has a error with conquer executable file!", this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cannot set the key because has a error with conquer executable file or the cryptkey format!", this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
