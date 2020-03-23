@@ -12,11 +12,13 @@ namespace SmartConquerLoader
 {
     public partial class Main : Form
     {
-        SCLCore.SCLClient client = null;
+        SCLClient client = null;
+        public string CurrentDirectory = "";
         public Main()
         {
             InitializeComponent();
             this.Icon = new Icon(@"Assets\co.ico");
+            CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName);
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -29,10 +31,10 @@ namespace SmartConquerLoader
                     string PathSCLHook = "";
                     if (Configuration.SelectedUserConfiguration.ExecuteInSubFolder != "" && Directory.Exists(Configuration.SelectedUserConfiguration.ExecuteInSubFolder))
                     {
-                        PathSCLHook = Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + "SCLHook.dll";
+                        PathSCLHook = CurrentDirectory + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + "SCLHook.dll";
                     } else
                     {
-                        PathSCLHook = "SCLHook.dll";
+                        PathSCLHook = CurrentDirectory + @"\SCLHook.dll";
                     }
 
                     // Create first the config used by DLL
@@ -52,14 +54,14 @@ namespace SmartConquerLoader
                     {
                         StartInfo = new ProcessStartInfo
                         {
-                            FileName = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable,
+                            FileName = CurrentDirectory + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable,
                             Arguments = "blacknull"
                         }
                     };
                     if (Configuration.SelectedUserConfiguration.ExecuteInSubFolder != "" && Directory.Exists(Configuration.SelectedUserConfiguration.ExecuteInSubFolder))
                     {
-                        pConquer.StartInfo.FileName = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable;
-                        pConquer.StartInfo.WorkingDirectory = Application.StartupPath + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\";
+                        pConquer.StartInfo.FileName = CurrentDirectory + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\" + Configuration.SelectedUserConfiguration.NameConquerExecutable;
+                        pConquer.StartInfo.WorkingDirectory = CurrentDirectory + @"\" + Configuration.SelectedUserConfiguration.ExecuteInSubFolder + @"\";
                     }
 
                     if (File.Exists(pConquer.StartInfo.FileName) && File.Exists(PathSCLHook))
