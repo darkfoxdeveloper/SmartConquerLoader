@@ -214,7 +214,7 @@ void csv3_init(HMODULE hModule)
 	GetPrivateProfileStringA(ConfigSectionName, "SERVER_VERSION", "0", ConfigServerVersion, 32, szConfig);
 	int ConfigServerVersionInt = (int)ConfigServerVersion;
 
-	if (ConfigServerVersionInt <= 5500) {
+	if (ConfigServerVersionInt >= 5500) {
 		//
 		//	hook packet processor
 		//
