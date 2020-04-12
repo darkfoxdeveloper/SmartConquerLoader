@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SCLSync")]
 [assembly: AssemblyDescription("is a library for syncronize data sended by loader and the client")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DaRkFoxDeveloper")]
 [assembly: AssemblyProduct("SCLSync")]
 [assembly: AssemblyCopyright("Copyright © DaRkFoxDeveloper 2020")]
 [assembly: AssemblyTrademark("")]

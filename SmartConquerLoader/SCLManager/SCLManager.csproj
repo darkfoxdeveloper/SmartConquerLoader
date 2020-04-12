@@ -7,9 +7,10 @@
     <ApplicationIcon>co.ico</ApplicationIcon>
     <Authors>DaRkFoxDeveloper</Authors>
     <Company>DaRkFoxDeveloper</Company>
-    <Product>DaRkFoxDeveloper</Product>
+    <Product>SCLManager</Product>
     <Description>A manager for configuration of SmartConquerLoader.</Description>
     <PackageProjectUrl>https://www.darkfoxdeveloper.com</PackageProjectUrl>
+    <Copyright>Copyright © DaRkFoxDeveloper 2020</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
