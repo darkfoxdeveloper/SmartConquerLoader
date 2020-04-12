@@ -62,6 +62,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SCLCore\SCLCore.csproj" />
+    <ProjectReference Include="..\SCLSync\SCLSync.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NetCoreServer">
+      <HintPath>..\SCLSync\bin\Debug\NetCoreServer.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C811010-69B0-4E8B-9C1D-BFDCE726CFA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCLSync</RootNamespace>
+    <AssemblyName>SCLSync</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCLClient.cs" />
+    <Compile Include="SCLServer.cs" />
+    <Compile Include="SocketSystem\Buffer.cs" />
+    <Compile Include="SocketSystem\FileCache.cs" />
+    <Compile Include="SocketSystem\HttpClient.cs" />
+    <Compile Include="SocketSystem\HttpRequest.cs" />
+    <Compile Include="SocketSystem\HttpResponse.cs" />
+    <Compile Include="SocketSystem\HttpsClient.cs" />
+    <Compile Include="SocketSystem\HttpServer.cs" />
+    <Compile Include="SocketSystem\HttpSession.cs" />
+    <Compile Include="SocketSystem\HttpsServer.cs" />
+    <Compile Include="SocketSystem\HttpsSession.cs" />
+    <Compile Include="SocketSystem\IWebSocket.cs" />
+    <Compile Include="SocketSystem\SslClient.cs" />
+    <Compile Include="SocketSystem\SslContext.cs" />
+    <Compile Include="SocketSystem\SslServer.cs" />
+    <Compile Include="SocketSystem\SslSession.cs" />
+    <Compile Include="SocketSystem\TcpClient.cs" />
+    <Compile Include="SocketSystem\TcpServer.cs" />
+    <Compile Include="SocketSystem\TcpSession.cs" />
+    <Compile Include="SocketSystem\UdpClient.cs" />
+    <Compile Include="SocketSystem\UdpServer.cs" />
+    <Compile Include="SocketSystem\Utilities.cs" />
+    <Compile Include="SocketSystem\WebSocket.cs" />
+    <Compile Include="SocketSystem\WsClient.cs" />
+    <Compile Include="SocketSystem\WssClient.cs" />
+    <Compile Include="SocketSystem\WsServer.cs" />
+    <Compile Include="SocketSystem\WsSession.cs" />
+    <Compile Include="SocketSystem\WssServer.cs" />
+    <Compile Include="SocketSystem\WssSession.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

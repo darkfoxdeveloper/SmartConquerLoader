@@ -22,6 +22,7 @@ Netcore 3.1 (only for develop)
 - SCLCore is a library used by others projects, contains some important things
 - SCLHook is a library used by loader for inject in conquer.exe the needed things for allow connection to configured server ip and ports
 - SCLManager is a manager (GUI) for the configuration file 'config.json'
+- SCLSync is a library (created in .NetFramework 4.5 for more compatibility with other projects) for syncronize data sended by loader and the client
 - SmartConquerLoader is the loader, that loader inject the dll of 'SCLHook' project build
 
 ### More info (Sorry, but is in Spanish)

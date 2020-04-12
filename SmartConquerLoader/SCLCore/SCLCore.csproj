@@ -9,8 +9,4 @@
     <PackageProjectUrl>https://www.darkfoxdeveloper.com</PackageProjectUrl>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NetCoreServer" Version="3.0.5" />
-  </ItemGroup>
-
 </Project>

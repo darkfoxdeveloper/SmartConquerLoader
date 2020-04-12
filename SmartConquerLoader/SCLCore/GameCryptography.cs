@@ -21,7 +21,7 @@ namespace SCLCore
             {
                 ConquerCryptography cryptFile = new ConquerCryptography(ConquerExecutablePath);
                 cryptFile.Set(GameCryptKey, ConquerExecutablePath);
-            } catch(Exception ex)
+            } catch(Exception)
             {
                 success = false;
             }

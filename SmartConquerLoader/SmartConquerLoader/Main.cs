@@ -1,5 +1,6 @@
 ﻿using Reloaded.Injector;
 using SCLCore;
+using SCLSync;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -84,7 +85,7 @@ namespace SmartConquerLoader
                                 btnStart.Text = "Loading...";
                                 if (Configuration.SelectedUserConfiguration.ServerSideProtection)
                                 {
-                                    client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                    client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 8000);
                                     client.StartSCLClient();
                                 }
                                 SystemTray();
@@ -105,7 +106,7 @@ namespace SmartConquerLoader
                             btnStart.Text = "Loading...";
                             if (Configuration.SelectedUserConfiguration.ServerSideProtection)
                             {
-                                client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 4000);
+                                client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 8000);
                                 client.StartSCLClient();
                             }
                             SystemTray();

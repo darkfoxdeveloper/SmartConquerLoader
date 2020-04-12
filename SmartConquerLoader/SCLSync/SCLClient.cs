@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using TcpClient = NetCoreServer.TcpClient;
 
-namespace SCLCore
+namespace SCLSync
 {
     public class SCLClient : TcpClient
     {
@@ -36,29 +36,29 @@ namespace SCLCore
 
             // Connect the client
             Console.Write("[SCLClient] Client connecting...");
-            if (this.Connect())
+            if (Connect())
             {
                 AuthIP();
                 Console.WriteLine("[SCLClient] Done!");
                 Console.WriteLine("[SCLClient] Press Enter to stop the client or '!' to reconnect the client...");
 
-                // Perform text input
-                for (; ; )
-                {
-                    string line = Console.ReadLine();
-                    if (string.IsNullOrEmpty(line))
-                        break;
+                //// Perform text input
+                //for (; ; )
+                //{
+                //    string line = Console.ReadLine();
+                //    if (string.IsNullOrEmpty(line))
+                //        break;
 
-                    // Disconnect the client
-                    if (line == "!")
-                    {
-                        SafeDisconnect();
-                        continue;
-                    }
+                //    // Disconnect the client
+                //    if (line == "!")
+                //    {
+                //        SafeDisconnect();
+                //        continue;
+                //    }
 
-                    // Send the entered text to the chat server
-                    this.SendAsync(line);
-                }
+                //    // Send the entered text to the chat server
+                //    this.SendAsync(line);
+                //}
 
                 // Disconnect the client
                 //Console.Write("[SCLClient] Client disconnecting...");
@@ -76,7 +76,7 @@ namespace SCLCore
         public void SafeDisconnect()
         {
             IPEndPoint localIpEndPoint = Socket.LocalEndPoint as IPEndPoint;
-            this.SendAsync("/removeip " + localIpEndPoint.Address);
+            Server.ResetValidation(localIpEndPoint.Address.ToString());
             Console.Write("[SCLClient] Client disconnecting...");
             this.DisconnectAsync();
             Console.WriteLine("[SCLClient] Done!");

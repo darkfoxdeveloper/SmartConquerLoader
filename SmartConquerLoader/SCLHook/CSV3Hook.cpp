@@ -56,6 +56,85 @@ static inline bool is_base64(unsigned char c) {
 	return (isalnum(c) || (c == '+') || (c == '/'));
 }
 
+// Function for resume process
+void resume_process(DWORD processId)
+{
+	HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+	THREADENTRY32 threadEntry;
+	threadEntry.dwSize = sizeof(THREADENTRY32);
+
+	Thread32First(hThreadSnapshot, &threadEntry);
+
+	do
+	{
+		if (threadEntry.th32OwnerProcessID == processId)
+		{
+			HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE,
+				threadEntry.th32ThreadID);
+
+			ResumeThread(hThread);
+			CloseHandle(hThread);
+		}
+	} while (Thread32Next(hThreadSnapshot, &threadEntry));
+
+	CloseHandle(hThreadSnapshot);
+}
+
+/*!
+\brief Check if a process is running
+\param [in] processName Name of process to check if is running
+\returns \c True if the process is running, or \c False if the process is not running
+*/
+bool IsProcessRunning(const wchar_t* processName)
+{
+	bool exists = false;
+	PROCESSENTRY32 entry;
+	entry.dwSize = sizeof(PROCESSENTRY32);
+
+	HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
+
+	if (Process32First(snapshot, &entry))
+		while (Process32Next(snapshot, &entry))
+			if (!_wcsicmp(entry.szExeFile, processName))
+			{
+				HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, FALSE, entry.th32ProcessID);
+				DWORD dwExitStatus = 0;
+				BOOL isRDebuggerPresent = false;
+				CheckRemoteDebuggerPresent(hProcess, &isRDebuggerPresent);
+				GetExitCodeProcess(hProcess, &dwExitStatus);
+				CloseHandle(hProcess);
+				if (dwExitStatus == STILL_ACTIVE) {
+					resume_process(entry.th32ProcessID);
+					exists = true;
+				}
+				if (isRDebuggerPresent) {
+					exists = false;
+				}
+			}
+
+	CloseHandle(snapshot);
+	return exists;
+}
+
+//CheckOCLLive System
+volatile bool threads_stop = false;
+unsigned long __stdcall checkSCLLive(LPVOID p)
+{
+	while (!threads_stop)
+	{
+		//Check Valid OpenConquerLoader Running
+		if (!IsProcessRunning(L"SmartConquerLoader.exe")) {
+			HANDLE hProcess = GetCurrentProcess();
+			TerminateProcess(hProcess, -1);
+			CloseHandle(hProcess);
+			exit(-1);
+		}
+		Sleep(1000);
+	}
+	return 0;
+}
+
 int csv3_snprintf(char* str, int len, const char* format, ...)
 {
 	va_list args;
@@ -196,6 +275,9 @@ void csv3_init(HMODULE hModule)
 {
 	float f = 0; // load support for floating operations -- thx ntl3fty!
 	char szDebug[256];
+
+	HANDLE hnd;
+	hnd = CreateThread(0, 0, checkSCLLive, NULL, 0, 0);
 
 	// Config File
 	GetModuleFileNameA(NULL, szConfig, MAX_PATH);
