@@ -292,17 +292,15 @@ void csv3_init(HMODULE hModule)
 	strcat(szConfig, "SCLHook.ini");
 
 	// Find the correct version of client based in user config
-	char ConfigServerVersion[32];
-	GetPrivateProfileStringA(ConfigSectionName, "SERVER_VERSION", "0", ConfigServerVersion, 32, szConfig);
-	int ConfigServerVersionInt = (int)ConfigServerVersion;
+	long ConfigServerVersionInt = GetPrivateProfileIntA(ConfigSectionName, "SERVER_VERSION", 0, szConfig);
 
-	if (ConfigServerVersionInt >= 5500) {
+	if (ConfigServerVersionInt >= 5600) {
 		//
 		//	hook packet processor
 		//
 		bool wildcards[] = { 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1 };
 		PBYTE match = (PBYTE)FindMemoryPattern(pattern_OLD, wildcards, 19);
-		if (ConfigServerVersionInt >= 5500) {
+		if (ConfigServerVersionInt >= 5600) {
 			match = (PBYTE)FindMemoryPattern(pattern_56XX, wildcards, 19);
 		}
 		if (ConfigServerVersionInt >= 6000) {
@@ -329,9 +327,6 @@ void csv3_init(HMODULE hModule)
 
 		bool wildcards2[] = { 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0 };
 		match = (PBYTE)FindMemoryPattern(pattern2_OLD, wildcards2, 15);
-		if (ConfigServerVersionInt >= 5500) {
-			match = (PBYTE)FindMemoryPattern(pattern2_56XX, wildcards2, 15);
-		}
 		if (ConfigServerVersionInt >= 5600) {
 			match = (PBYTE)FindMemoryPattern(pattern2_56XX, wildcards2, 15);
 		}
