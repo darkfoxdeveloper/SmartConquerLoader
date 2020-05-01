@@ -182,7 +182,6 @@
         private System.Windows.Forms.ColumnHeader Image;
         private System.Windows.Forms.ColumnHeader Version;
         private System.Windows.Forms.Button btnAddNew;
-        private System.Windows.Forms.Button button1;
     }
 }
 

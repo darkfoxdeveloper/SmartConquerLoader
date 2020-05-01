@@ -265,9 +265,7 @@
         private System.Windows.Forms.TextBox tbImage;
         private System.Windows.Forms.TextBox tbGameCryptographyKey;
         private System.Windows.Forms.Button btnGetGameCryptKey;
-        private System.Windows.Forms.Button btnSetGameCryptographyKey;
         private System.Windows.Forms.Button btnSetGameCryptKey;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnRemove;
     }
 }

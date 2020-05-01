@@ -302,7 +302,7 @@ void csv3_init(HMODULE hModule)
 		//
 		bool wildcards[] = { 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1 };
 		PBYTE match = (PBYTE)FindMemoryPattern(pattern_OLD, wildcards, 19);
-		if (ConfigServerVersionInt >= 5600) {
+		if (ConfigServerVersionInt >= 5500) {
 			match = (PBYTE)FindMemoryPattern(pattern_56XX, wildcards, 19);
 		}
 		if (ConfigServerVersionInt >= 6000) {

@@ -48,6 +48,8 @@ namespace SCLSync
                             {
                                 IPAddress ip = IPAddress.Parse(commandArgs[1]);
                                 SCLServer.IPAlloweds.Add(ip);
+                                Database db = new Database();//
+                                db.Save(SCLServer.IPAlloweds);//
                                 Console.WriteLine("[SCLServer] authip command from client.");
                             } else
                             {
@@ -59,6 +61,8 @@ namespace SCLSync
                         {
                             IPAddress ip = IPAddress.Parse(commandArgs[1]);
                             SCLServer.IPAlloweds.RemoveAll(x => x.ToString() == ip.ToString());
+                            Database db = new Database();//
+                            db.Save(SCLServer.IPAlloweds);//
                             break;
                         }
                     default:

@@ -20,6 +20,7 @@ namespace SmartConquerLoader
             InitializeComponent();
             this.Icon = new Icon(@"Assets\co.ico");
             CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName);
+            Database db = new Database();
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -83,11 +84,7 @@ namespace SmartConquerLoader
                                 injector.Inject("SCLHook.dll");
                                 injector.Dispose();
                                 btnStart.Text = "Loading...";
-                                if (Configuration.SelectedUserConfiguration.ServerSideProtection)
-                                {
-                                    client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 8000);
-                                    client.StartSCLClient();
-                                }
+                                LaunchServerSideProtection();
                                 SystemTray();
                             }
                             else
@@ -104,11 +101,7 @@ namespace SmartConquerLoader
                             injector.Inject("SCLHook.dll");
                             injector.Dispose();
                             btnStart.Text = "Loading...";
-                            if (Configuration.SelectedUserConfiguration.ServerSideProtection)
-                            {
-                                client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 8000);
-                                client.StartSCLClient();
-                            }
+                            LaunchServerSideProtection();
                             SystemTray();
                         }
                     }
@@ -125,6 +118,15 @@ namespace SmartConquerLoader
                 {
                     MessageBox.Show("Sorry, the conquer executable '" + Configuration.SelectedUserConfiguration.NameConquerExecutable + "' has not been found", this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void LaunchServerSideProtection()
+        {
+            if (Configuration.SelectedUserConfiguration.ServerSideProtection && Process.GetProcessesByName("SmartConquerLoader").Count() <= 0)
+            {
+                client = new SCLClient(IPAddress.Parse(Configuration.SelectedUserConfiguration.Host), 8000);
+                client.StartSCLClient();
             }
         }
 
