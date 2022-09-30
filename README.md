@@ -26,4 +26,4 @@ Netcore 3.1 (only for develop)
 - SmartConquerLoader is the loader, that loader inject the dll of 'SCLHook' project build
 
 ### More info (Sorry, but is in Spanish)
-https://darkfoxdeveloper.com/d/237-smartconquerloader-proyecto-de-loader-open-source-para-conquer
+https://www.darkfoxdeveloper.com/d/237-smartconquerloader-proyecto-de-loader-open-source-para-conquer
